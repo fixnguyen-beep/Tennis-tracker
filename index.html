@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suivi des samedis – Tennis</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="topbar">
+        <h1>Suivi des cours de tennis</h1>
+        <p class="subtitle">Samedis du 10 octobre 2026 au 15 juillet 2027</p>
+      </header>
+
+      <section class="summary" id="summary">
+        <div class="card">
+          <span class="label">Albertine & Gaby</span>
+          <strong id="count-albertine">0</strong>
+        </div>
+        <div class="card">
+          <span class="label">Emilie & Paul</span>
+          <strong id="count-emilie">0</strong>
+        </div>
+        <div class="card">
+          <span class="label">Restants</span>
+          <strong id="count-remaining">0</strong>
+        </div>
+      </section>
+
+      <div id="status" class="status" aria-live="polite">
+        Chargement…
+      </div>
+
+      <main>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Qui a payé ?</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="dates-body"></tbody>
+        </table>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
