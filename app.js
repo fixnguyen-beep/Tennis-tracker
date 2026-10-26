@@ -2,7 +2,7 @@
 const SUPABASE_URL = "https://fjcvqyqwngllufgbgkwl.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_5IkePtGg9hlhJelR3uFBcA_T3bX55J9";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const FAMILY_LABELS = {
   albertine_gaby: "Albertine & Gaby",
@@ -87,7 +87,7 @@ function renderRows(rows) {
 }
 
 async function loadData() {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from("saturday_payments")
     .select("*")
     .order("date", { ascending: true });
@@ -122,7 +122,7 @@ async function updatePayment(date, family) {
     updated_at: new Date().toISOString()
   };
 
-  const { error } = await supabase
+  const { error } = await supabaseClient
     .from("saturday_payments")
     .upsert(payload, { onConflict: "date" });
 
