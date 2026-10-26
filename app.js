@@ -2,7 +2,7 @@
 const SUPABASE_URL = "https://fjcvqyqwngllufgbgkwl.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_5IkePtGg9hlhJelR3uFBcA_T3bX55J9";
 
-const supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const FAMILY_LABELS = {
   albertine_gaby: "Albertine & Gaby",
