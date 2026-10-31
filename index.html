@@ -3,47 +3,104 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Suivi des samedis – Tennis</title>
+    <title>Catalogue de livres lus</title>
+    <meta
+      name="description"
+      content="Catalogue public des livres lus avec consultation et ajout via Supabase."
+    />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
-    <div class="container">
-      <header class="topbar">
-        <h1>Suivi des cours de tennis</h1>
-        <p class="subtitle">Samedis du 10 octobre 2026 au 15 juillet 2027</p>
+    <div class="page-shell">
+      <header class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Catalogue de lecture</p>
+        <h1 id="page-title">Livres lus</h1>
+        <p class="intro">
+          Consultez le catalogue public et ajoutez vos lectures en quelques secondes.
+        </p>
       </header>
 
-      <section class="summary" id="summary">
-        <div class="card">
-          <span class="label">Albertine & Gaby</span>
-          <strong id="count-albertine">0</strong>
-        </div>
-        <div class="card">
-          <span class="label">Emilie & Paul</span>
-          <strong id="count-emilie">0</strong>
-        </div>
-        <div class="card">
-          <span class="label">Restants</span>
-          <strong id="count-remaining">0</strong>
-        </div>
-      </section>
+      <main class="layout">
+        <section class="panel" aria-labelledby="form-title">
+          <div class="section-heading">
+            <h2 id="form-title">Ajouter un livre</h2>
+          </div>
 
-      <div id="status" class="status" aria-live="polite">
-        Chargement…
-      </div>
+          <form id="book-form" class="book-form" novalidate>
+            <div class="field-group">
+              <label for="lecteur">Lecteur</label>
+              <input
+                id="lecteur"
+                name="lecteur"
+                type="text"
+                maxlength="100"
+                autocomplete="name"
+                required
+                aria-describedby="lecteur-help"
+              />
+              <small id="lecteur-help">Maximum 100 caractères.</small>
+            </div>
 
-      <main>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Qui a payé ?</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="dates-body"></tbody>
-        </table>
+            <div class="field-group">
+              <label for="titre">Titre</label>
+              <input
+                id="titre"
+                name="titre"
+                type="text"
+                maxlength="300"
+                required
+                aria-describedby="titre-help"
+              />
+              <small id="titre-help">Maximum 300 caractères.</small>
+            </div>
+
+            <div class="field-group">
+              <label for="auteur">Auteur</label>
+              <input
+                id="auteur"
+                name="auteur"
+                type="text"
+                maxlength="200"
+                required
+                aria-describedby="auteur-help"
+              />
+              <small id="auteur-help">Maximum 200 caractères.</small>
+            </div>
+
+            <div class="field-group">
+              <label for="date_lecture">Date de lecture</label>
+              <input id="date_lecture" name="date_lecture" type="date" required />
+            </div>
+
+            <div class="form-actions">
+              <button id="submit-button" type="submit">Ajouter le livre</button>
+            </div>
+          </form>
+
+          <p id="form-status" class="status status--info" role="status" aria-live="polite">
+            Prêt à enregistrer une lecture.
+          </p>
+        </section>
+
+        <section class="panel" aria-labelledby="catalogue-title">
+          <div class="section-heading list-header">
+            <h2 id="catalogue-title">Catalogue</h2>
+            <span id="book-count" class="count-badge" aria-live="polite">0 livre</span>
+          </div>
+
+          <p id="list-status" class="status status--info" role="status" aria-live="polite">
+            Chargement du catalogue...
+          </p>
+
+          <div id="books-list" class="book-list" aria-live="polite"></div>
+
+          <nav
+            id="pagination"
+            class="pagination"
+            aria-label="Pagination du catalogue"
+          ></nav>
+        </section>
       </main>
     </div>
 
